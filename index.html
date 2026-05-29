@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nicolas Cabrignac — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black:   #0D0D0C;
+  --ink:     #1A1917;
+  --text:    #2C2A27;
+  --muted:   #767472;
+  --sub:     #B0ADAA;
+  --border:  #ECEAE7;
+  --surface: #F5F4F1;
+  --page:    #FAFAF8;
+  --white:   #FFFFFF;
+  --serif:   'Instrument Serif', Georgia, serif;
+  --sans:    'Inter', system-ui, sans-serif;
+}
+
+@page { size: A4; margin: 0; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+body {
+  background: var(--white);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-break { page-break-after: always; break-after: page; }
+
+img { display: block; width: 100%; height: auto; }
+
+/* ── COVER ── */
+.cover {
+  min-height: 297mm;
+  background: var(--black);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 52px 60px;
+}
+
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.cover-mark {
+  width: 32px; height: 32px;
+  border-radius: 7px;
+  background: rgba(255,255,255,0.1);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  color: rgba(255,255,255,0.5);
+}
+
+.cover-year {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.3);
+  font-weight: 500;
+}
+
+.cover-center { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 60px 0; }
+
+.cover-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+
+.cover-name {
+  font-family: var(--serif);
+  font-size: 64px;
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.cover-role {
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.5);
+}
+
+.cover-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.cover-contact {
+  display: flex; flex-direction: column; gap: 3px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  font-weight: 300;
+}
+
+.cover-tagline {
+  font-size: 11px;
+  color: rgba(255,255,255,0.3);
+  font-weight: 300;
+  text-align: right;
+  max-width: 200px;
+  line-height: 1.6;
+}
+
+/* ── SHARED ── */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.page-num {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--sub);
+  font-weight: 500;
+}
+
+.page-label {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--sub);
+  font-weight: 500;
+}
+
+.section-label {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--black);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  margin-bottom: 8px;
+}
+
+.section-title em { font-style: italic; color: var(--muted); }
+
+.section-sub {
+  font-size: 12.5px;
+  color: var(--muted);
+  font-weight: 300;
+  line-height: 1.7;
+  max-width: 460px;
+}
+
+/* ── SCREENSHOT CONTAINERS ── */
+.shot {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 12px rgba(0,0,0,0.04);
+}
+
+.shot.dark {
+  border-color: rgba(255,255,255,0.06);
+  box-shadow: 0 1px 12px rgba(0,0,0,0.2);
+}
+
+.shot.no-border {
+  border: none;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+}
+
+.shot-label {
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sub);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.shot-caption {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 300;
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+/* ── GRID LAYOUTS ── */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+.stack { display: flex; flex-direction: column; gap: 14px; }
+
+/* ── PROJECT HEADER ── */
+.project-intro {
+  margin-bottom: 24px;
+}
+
+.project-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 6px;
+  padding: 6px 12px;
+  margin-bottom: 16px;
+  width: fit-content;
+}
+
+.project-meta {
+  display: flex;
+  gap: 28px;
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+  margin-top: 16px;
+}
+
+.pm-item {}
+.pm-label {
+  font-size: 8.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sub);
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+.pm-value {
+  font-size: 11px;
+  color: var(--text);
+  font-weight: 400;
+}
+
+/* ── CLOSING ── */
+.closing {
+  min-height: 297mm;
+  background: var(--black);
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.closing-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 440px;
+}
+
+.closing-heading {
+  font-family: var(--serif);
+  font-size: 40px;
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 20px;
+}
+
+.closing-heading em { font-style: italic; color: rgba(255,255,255,0.4); }
+
+.closing-body {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  font-weight: 300;
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+
+.closing-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.closing-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+  font-weight: 300;
+}
+
+.closing-link-label {
+  font-size: 8.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  font-weight: 500;
+  width: 60px;
+}
+
+@media print {
+  body { background: white; }
+  .page { box-shadow: none; }
+  .page-break { page-break-after: always; }
+}
+
+@media screen {
+  .page {
+    box-shadow: 0 1px 40px rgba(0,0,0,0.08);
+    margin-bottom: 40px;
+  }
+  body { background: #E8E6E3; padding: 40px 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════ PAGE 1: COVER ════════ -->
+<div class="page cover page-break">
+  <div class="cover-top">
+    <div class="cover-mark" style="width:48px;height:48px;border-radius:10px;overflow:hidden;background:none;padding:0;"><img src="assets/ok4.png" alt="Nicolas Cabrignac" style="width:100%;height:100%;object-fit:cover;"></div>
+    <div class="cover-year">2026</div>
+  </div>
+  <div class="cover-center">
+    <div class="cover-eyebrow">Product Design Portfolio</div>
+    <h1 class="cover-name">Nicolas<br>Cabrignac</h1>
+  </div>
+  <div class="cover-bottom">
+    <div class="cover-contact">
+      <span>nicolascabrignac.com</span>
+      <span>San Francisco, CA</span>
+    </div>
+    <div class="cover-tagline">Designing AI products that amplify human cognition</div>
+  </div>
+</div>
+
+<!-- ════════ PAGE 2: LOBBY — BRAND & BRIEF ════════ -->
+<div class="page page-break" style="background: var(--white); padding: 48px 52px;">
+  <div class="page-header">
+    <div class="page-label">Lobby</div>
+    <div class="page-num">01</div>
+  </div>
+
+  <div class="project-intro">
+    <div class="section-title">AI email agent that <em>thinks</em> like you</div>
+    <div class="section-sub">2-person company. Planned, designed, prototyped and built a new type of human-AI interaction where users only review and approve end-to-end workflows.</div>
+    <div class="project-meta">
+      <div class="pm-item"><div class="pm-label">Role</div><div class="pm-value">Co-Founder, CTO</div></div>
+      <div class="pm-item"><div class="pm-label">Platform</div><div class="pm-value">iOS, macOS, Web</div></div>
+      <div class="pm-item"><div class="pm-label">Scope</div><div class="pm-value">Brand, Product, Design System</div></div>
+      <div class="pm-item"><div class="pm-label">Year</div><div class="pm-value">2023 – 2026</div></div>
+    </div>
+  </div>
+
+  <!-- Brand / Website -->
+  <div class="shot no-border" style="margin-bottom: 14px;">
+    <img src="assets/Screenshot 2026-05-28 at 16.33.02.png" alt="Lobby manifesto — Modeling Human Cognition">
+  </div>
+  <div class="shot-caption">Manifesto page. Behavioral modeling, warm neutrals, content-first identity.</div>
+</div>
+
+<!-- ════════ PAGE 3: LOBBY — BRIEFING FLOW ════════ -->
+<div class="page page-break" style="background: var(--page); padding: 48px 52px;">
+  <div class="page-header">
+    <div class="page-label">Lobby — Agentic Email Flow</div>
+    <div class="page-num">02</div>
+  </div>
+
+  <div style="margin-bottom: 20px;">
+    <div class="section-title">Review, approve, <em>done</em></div>
+    <div class="section-sub" style="margin-bottom:0;">Lobby replaces the inbox with a daily briefing. Emails are pre-categorized, drafts are written, actions are queued. Users just approve.</div>
+  </div>
+
+  <div class="stack">
+    <div class="shot no-border">
+      <img src="assets/Screenshot 2026-05-28 at 16.09.09.png" alt="Lobby action required — AI-drafted reply with calendar invite">
+    </div>
+    <div class="shot-caption">Action required. AI summarizes the thread, drafts a reply, and queues a calendar invite. One-click approve.</div>
+    <div class="grid-2">
+      <div>
+        <div class="shot no-border">
+          <img src="assets/Screenshot 2026-05-28 at 16.13.41.png" alt="Lobby quick read briefing">
+        </div>
+        <div class="shot-caption">Quick read. AI summaries for emails that need no action</div>
+      </div>
+      <div>
+        <div class="shot no-border">
+          <img src="assets/Screenshot 2026-05-28 at 16.18.52.png" alt="Lobby auto-archived email list">
+        </div>
+        <div class="shot-caption">Auto-archived. Low-priority emails cleared automatically</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ PAGE 4: LOBBY — AGENT CHAT ════════ -->
+<div class="page page-break" style="background: var(--page); padding: 48px 52px;">
+  <div class="page-header">
+    <div class="page-label">Lobby — Agent Chat</div>
+    <div class="page-num">03</div>
+  </div>
+
+  <div style="margin-bottom: 20px;">
+    <div class="section-title">Chat across Gmail, Calendar, <em>& more</em></div>
+    <div class="section-sub">Natural language commands that execute across connected tools. Scheduling, searching, drafting, all from one interface.</div>
+  </div>
+
+  <div class="stack">
+    <div class="shot no-border">
+      <img src="assets/Frame 8271659.png" alt="Lobby chat — multi-step onboarding workflow">
+    </div>
+    <div class="shot-caption">Multi-step agent workflow. Draft and send onboarding emails across multiple recipients, with approval gates at each step.</div>
+  </div>
+</div>
+
+<!-- ════════ PAGE 5: LOBBY — COGNITION MODEL ════════ -->
+<div class="page page-break" style="background: var(--page); padding: 48px 52px;">
+  <div class="page-header">
+    <div class="page-label">Lobby — Cognition Model</div>
+    <div class="page-num">04</div>
+  </div>
+
+  <div style="margin-bottom: 20px;">
+    <div class="section-title">Mapping how users <em>think</em></div>
+    <div class="section-sub">A multilayer cognition model that learns user patterns, trust graphs, and behavioral signals to predict intent and personalize agent actions.</div>
+  </div>
+
+  <div class="stack">
+    <div class="shot no-border">
+      <img src="assets/Screenshot 2026-05-28 at 18.53.16.png" alt="Lobby personal cognitive model">
+    </div>
+    <div class="shot-caption">Personal cognitive model. Trust graph, goals, personality, habits, and emotional state mapped per user.</div>
+    <div class="shot no-border">
+      <img src="assets/Screenshot 2026-05-28 at 18.53.01.png" alt="Lobby team cognition galaxy view">
+    </div>
+    <div class="shot-caption">Collective cognition model. Team-wide galaxy view with inter-person dynamics and shared patterns.</div>
+  </div>
+</div>
+
+<!-- ════════ PAGE 6: MOONE — BRAND & WEBSITE ════════ -->
+<div class="page page-break" style="background: var(--black); padding: 48px 52px;">
+  <div class="page-header">
+    <div class="page-label" style="color: rgba(255,255,255,0.35);">Moone</div>
+    <div class="page-num" style="color: rgba(255,255,255,0.25);">05</div>
+  </div>
+
+  <div class="project-intro" style="margin-bottom: 20px;">
+    <div class="section-title" style="color:var(--white);">Team feedback <em style="color:rgba(255,255,255,0.4);">on autopilot</em></div>
+    <div class="section-sub" style="color:rgba(255,255,255,0.5);">Autonomous agent analyzing qualitative team feedback. Same 2-person team. Planned, designed, prototyped and built the product.</div>
+    <div class="project-meta" style="border-color: rgba(255,255,255,0.1);">
+      <div class="pm-item"><div class="pm-label" style="color:rgba(255,255,255,0.35);">Role</div><div class="pm-value" style="color:rgba(255,255,255,0.7);">Co-Founder, CTO</div></div>
+      <div class="pm-item"><div class="pm-label" style="color:rgba(255,255,255,0.35);">Scope</div><div class="pm-value" style="color:rgba(255,255,255,0.7);">Brand, Website, Product</div></div>
+      <div class="pm-item"><div class="pm-label" style="color:rgba(255,255,255,0.35);">Year</div><div class="pm-value" style="color:rgba(255,255,255,0.7);">2019 – 2022</div></div>
+    </div>
+  </div>
+
+  <div class="stack">
+    <div class="shot dark">
+      <img src="assets/Screenshot_2025-12-18_at_11.16.08.png" alt="Moone website — hero">
+    </div>
+    <div class="shot dark">
+      <img src="assets/Screenshot_2025-12-18_at_11.16.34.png" alt="Moone website — Slack integration">
+    </div>
+  </div>
+</div>
+
+<!-- ════════ PAGE 8: MOONE — APP ════════ -->
+<div class="page page-break" style="background: #111; padding: 48px 52px;">
+  <div class="page-header">
+    <div class="page-label" style="color: rgba(255,255,255,0.35);">Moone — App</div>
+    <div class="page-num" style="color: rgba(255,255,255,0.25);">06</div>
+  </div>
+
+  <div class="stack">
+    <div class="shot dark">
+      <img src="assets/Screenshot_2025-12-18_at_11.21.24.png" alt="Moone dashboard">
+    </div>
+    <div class="grid-2">
+      <div>
+        <div class="shot dark">
+          <img src="assets/Screenshot_2025-12-18_at_11.21.34.png" alt="Moone pulses list">
+        </div>
+        <div class="shot-caption" style="color:rgba(255,255,255,0.4);">Pulse management. Track team sentiment over time</div>
+      </div>
+      <div>
+        <div class="shot dark">
+          <img src="assets/Screenshot_2025-12-18_at_11.22.25.png" alt="Moone quarterly review">
+        </div>
+        <div class="shot-caption" style="color:rgba(255,255,255,0.4);">Quarterly review with sentiment & participation analytics</div>
+      </div>
+    </div>
+    <div class="shot dark">
+      <img src="assets/Screenshot_2025-12-18_at_11.21.49.png" alt="Moone new pulse creation">
+    </div>
+    <div class="shot-caption" style="color:rgba(255,255,255,0.4);">New pulse creation. One-time or recurring feedback loops.</div>
+  </div>
+</div>
+
+<!-- ════════ PAGE 9: SLIDLY ════════ -->
+<div class="page page-break" style="background: var(--page); padding: 48px 52px;">
+  <div class="page-header">
+    <div class="page-label">Slidly</div>
+    <div class="page-num">07</div>
+  </div>
+
+  <div class="project-intro" style="margin-bottom: 20px;">
+    <div class="section-title">One-liner to <em>pixel-perfect</em> deck</div>
+    <div class="section-sub">AI presentation generator. Type a sentence, get a complete styled slide deck. Side project exploring generative UI.</div>
+    <div class="project-meta">
+      <div class="pm-item"><div class="pm-label">Role</div><div class="pm-value">Solo Designer & Builder</div></div>
+      <div class="pm-item"><div class="pm-label">Type</div><div class="pm-value">Side Project</div></div>
+    </div>
+  </div>
+
+  <div class="stack">
+    <div class="shot no-border">
+      <img src="assets/Screenshot_2025-12-18_at_11.35.00.png" alt="Slidly landing page">
+    </div>
+    <div class="grid-2">
+      <div>
+        <div class="shot no-border">
+          <img src="assets/Screenshot_2025-12-18_at_11.35.43.png" alt="Slidly — new presentation wizard">
+        </div>
+        <div class="shot-caption">Stepped creation flow. Company details, data review, pitch generation</div>
+      </div>
+      <div>
+        <div class="shot no-border">
+          <img src="assets/Screenshot_2025-12-18_at_11.35.33.png" alt="Slidly — dashboard">
+        </div>
+        <div class="shot-caption">Minimal dashboard. Dark canvas keeps focus on the slides</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ PAGE 10: CLOSING ════════ -->
+<div class="page closing">
+  <div class="closing-content">
+    <div class="section-label" style="color: rgba(255,255,255,0.35); margin-bottom: 24px;">Let's Talk</div>
+    <h2 class="closing-heading">Interested in working <em>together?</em></h2>
+    <p class="closing-body">
+      I'm looking for a product design role where I can bring the same craft I put into Lobby and Moone. Thoughtful systems, restrained aesthetics, and AI-native thinking.
+    </p>
+    <div class="closing-links">
+      <div class="closing-link">
+        <span class="closing-link-label">Email</span>
+        cabri.nico@gmail.com
+      </div>
+      <div class="closing-link">
+        <span class="closing-link-label">Website</span>
+        nicolascabrignac.com
+      </div>
+      <div class="closing-link">
+        <span class="closing-link-label">LinkedIn</span>
+        linkedin.com/in/nicolas-cabrignac
+      </div>
+      <div class="closing-link">
+        <span class="closing-link-label">Twitter</span>
+        @nicowcbg
+      </div>
+      <div class="closing-link">
+        <span class="closing-link-label">Location</span>
+        San Francisco, CA
+      </div>
+    </div>
+  </div>
+  <div class="cover-bottom">
+    <div style="font-family:var(--serif);font-style:italic;font-size:16px;color:rgba(255,255,255,0.08);">N</div>
+    <div style="font-size:10px;color:rgba(255,255,255,0.08);font-weight:300;">Nicolas Cabrignac · 2026</div>
+  </div>
+</div>
+
+</body>
+</html>
