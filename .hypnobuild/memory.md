@@ -5,3 +5,7 @@
 ## 2026-06-19 · Remove all the serif you see
 **Changed:** index.html, portfolio-pdf.html, portfolio.html
 **Notes:** All done. The only remaining `serif` references are inside the `--sans` fallback stack (`system-ui, sans-serif`), which is correct — that's the generic sans-serif fallback, not a serif font. **What changed across all 3 files (`index.html`, `portfolio.html`, `portfolio-pdf.html`):** - Removed the `--serif: 'Instrument Serif', Georgia, serif;` CSS variable definition - Replaced every `var(--serif)` 
+
+## 2026-06-19 · Also remove the italic + grey just normal titles
+**Changed:** index.html, portfolio-pdf.html, portfolio.html
+**Notes:** Clear picture. In all three files, `em` tags inside `.section-title` and `.closing-heading` get italic + grey. I'll strip those back to normal/inherit.
